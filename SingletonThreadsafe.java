@@ -4,13 +4,15 @@ public class SingletonThreadsafe {
     // Private constructor to prevent instantiation from outside
     private SingletonThreadsafe() {}
 
-    // Static method to return the singleton instance with locking
+    // Static method to return the singleton instance with double locking
     public static SingletonThreadsafe getInstance() {
-            synchronized (SingletonThreadsafe.class) {
+          if (instance == null) {
+            synchronized (Singleton.class) {
                 if (instance == null) {
-                    instance = new SingletonThreadsafe();
+                    instance = new Singleton();
                 }
             }
+        }
         return instance;
     }
 }
